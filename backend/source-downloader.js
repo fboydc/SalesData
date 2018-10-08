@@ -1,6 +1,10 @@
 var Client = require('ftp');
 var Promise = require('promise'); 
 var fs = require('fs');
+var AWS = require('aws-sdk');
+
+
+AWS.config.loadFromPath('./aws-cred.json');
 
 const _LIVE_HOST = {
     ip: '192.168.1.150',
@@ -18,6 +22,9 @@ const _TESTING_HOST = {
     password: 'f6365174',
     working_directory: './'
 }
+
+
+let s3 = new AWS.S3();
 
 
 const _CURRENT_HOST = _TESTING_HOST;
@@ -99,8 +106,16 @@ const copyFiles = (files)=>{
                     /*
                        PIPING TO S3 BUCKET SHOULD GO IN HERE (USE STREAM PASSTHROUGH FUNCTION)
                        search: https://stackoverflow.com/questions/37336050/pipe-a-stream-to-s3-upload
+                       Setting up AWS-node: https://docs.aws.amazon.com/sdk-for-javascript/v2/developer-guide/js-sdk-dv.pdf
+
                     */
+                    s3.upload({Bucket:'wavfilestreamtest', key: item.name, Body: stream});
                     stream.pipe(fs.createWriteStream('./output/'+item.name));
+
+                    /*stream.pipe(()=>{
+                        let pass = new stream.PassThrough();
+                        console.log(pass);
+                    })*/
                     if(index === files.length - 1){
                         resolve(true)
                     }
@@ -121,11 +136,6 @@ getFilesFromSource().then(result=>{
         console.log("All files transfered succesfully");
     else
         throw result;
-   /* data.forEach((stream, index)=>{
-        console.log("index", index);
-        console.log("stream", stream);
-      //stream.pipe(fs.createWriteStream("./output/"+index+".wav"))
-    })*/
 })
 
 

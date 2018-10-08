@@ -9,6 +9,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "ftp": "^0.3.10"
+    "fs": "0.0.1-security",
+    "ftp": "^0.3.10",
+    "promise": "^8.0.2"
   }
 }

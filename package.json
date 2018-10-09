@@ -13,5 +13,8 @@
     "fs": "0.0.1-security",
     "ftp": "^0.3.10",
     "promise": "^8.0.2"
+  },
+  "devDependencies": {
+    "mysql": "^2.16.0"
   }
 }

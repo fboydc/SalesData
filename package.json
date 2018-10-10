@@ -12,6 +12,7 @@
     "aws-sdk": "^2.329.0",
     "fs": "0.0.1-security",
     "ftp": "^0.3.10",
+    "node-schedule": "^1.3.0",
     "promise": "^8.0.2"
   },
   "devDependencies": {

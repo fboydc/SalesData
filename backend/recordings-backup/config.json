@@ -1,0 +1,27 @@
+{
+    "sources":{
+        "live_source": {
+            "ip": "192.168.1.150",
+            "port": "21",
+            "user": "support",
+            "password": "iyeastar",
+            "working_directory": "/ftp_media/mmc/autorecords"
+        },
+        "testing_source": {
+            "ip": "192.168.1.149",
+            "port": "21",
+            "user": "felipe",
+            "password": "f6365174",
+            "working_directory": "./"
+        }
+    },
+    "temp_storage": {
+        "path": "/Volumes/WUBSA/temp-voicefiles" 
+    },
+    "destination": {
+        "aws": {
+            "aws_config_file_path": "./aws-cred.json"
+        }
+    }
+
+}
